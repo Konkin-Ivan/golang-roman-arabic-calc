@@ -56,3 +56,13 @@ func IntToRoman(num int) string {
 	}
 	return result.String()
 }
+
+// IsRomanNumberValid Return true if string is a valid Roman numeral and does not exceed 10
+func IsRomanNumberValid(num string, maxValue int) bool {
+	roman := RomanNumber(num)
+	val, err := roman.ToInt()
+	if err != nil {
+		return false
+	}
+	return val <= maxValue
+}
