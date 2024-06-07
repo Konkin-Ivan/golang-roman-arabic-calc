@@ -11,39 +11,28 @@ import (
 )
 
 func main() {
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Enter an expression (e.g., 5 + 3 or VII - II): ")
-	input, _ := reader.ReadString('\n')
+	firstOperand, mathOperator, lastOperand := getOperandsAndOperator()
 
-	input = strings.TrimSpace(input)
-
-	parts := strings.Fields(input)
-	if len(parts) != 3 {
-		panic("Invalid input: the mathematical expression must contain two operands and one operator (+, -, /, *).")
-	}
-
-	left, leftIsRoman, err := parseNumber(parts[0])
+	left, leftIsRoman, err := parseNumber(firstOperand)
 	if err != nil {
 		panic(err)
 	}
 
-	right, rightIsRoman, err := parseNumber(parts[2])
+	right, rightIsRoman, err := parseNumber(lastOperand)
 	if err != nil {
 		panic(err)
 	}
 
-	// Check if both numbers are from the same numeric system
 	if !areSameNumericSystem(leftIsRoman, rightIsRoman) {
 		panic("Invalid input: mixed numeric systems are not allowed.")
 	}
 
-	calc := calculator.Calculator{left, right, parts[1]}
+	calc := calculator.Calculator{left, right, mathOperator}
 	result, err := calc.Calculate()
 	if err != nil {
 		panic(err)
 	}
 
-	// If result is negative and numbers are Roman, panic
 	resultInt, _ := result.ToInt()
 	if resultInt < 0 && leftIsRoman {
 		panic("Invalid result: negative numbers are not allowed in the Roman numeral system.")
@@ -56,10 +45,24 @@ func main() {
 	}
 }
 
+func getOperandsAndOperator() (string, string, string) {
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Enter an expression (e.g., 5 + 3 or VII - II): ")
+	input, _ := reader.ReadString('\n')
+
+	input = strings.TrimSpace(input)
+
+	parts := strings.Fields(input)
+	if len(parts) != 3 {
+		panic("Invalid input: the mathematical expression must contain two operands and one operator (+, -, /, *).")
+	}
+
+	return parts[0], parts[1], parts[2]
+}
+
 func parseNumber(input string) (number.Number, bool, error) {
-	maxValue := 10
 	if isRomanNumber(input) {
-		if !number.IsRomanNumberValid(input, maxValue) {
+		if !number.IsRomanNumberValid(input, 10) {
 			return nil, false, fmt.Errorf("Roman numbers must not exceed X (10).")
 		}
 		return number.RomanNumber(input), true, nil

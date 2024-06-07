@@ -42,7 +42,6 @@ func (n RomanNumber) ToString() string {
 	return string(n)
 }
 
-// IntToRoman converts an integer to a Roman numeral string
 func IntToRoman(num int) string {
 	values := []int{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}
 	symbols := []string{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"}
@@ -57,7 +56,6 @@ func IntToRoman(num int) string {
 	return result.String()
 }
 
-// IsRomanNumberValid Return true if string is a valid Roman numeral and does not exceed 10
 func IsRomanNumberValid(num string, maxValue int) bool {
 	roman := RomanNumber(num)
 	val, err := roman.ToInt()
