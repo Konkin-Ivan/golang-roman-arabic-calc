@@ -13,3 +13,4 @@ Arabic - Roman calculator.
 
 - ```make up``` // start docker container;
 - ```make run``` // compile and run program.
+- ```make test``` // run testing.

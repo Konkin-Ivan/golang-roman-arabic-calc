@@ -14,4 +14,4 @@ run:
 	docker-compose exec golang go run main.go
 
 test:
-	docker-compose exec php vendor/bin/phpunit tests/
+	docker-compose exec golang go test ./...
