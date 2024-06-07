@@ -22,8 +22,11 @@ func main() {
 	}
 
 	var left, right number.Number
+	var leftIsRoman, rightIsRoman bool
+
 	if isRomanNumber(parts[0]) {
 		left = number.RomanNumber(parts[0])
+		leftIsRoman = true
 	} else {
 		num, err := strconv.Atoi(parts[0])
 		if err != nil {
@@ -34,6 +37,7 @@ func main() {
 
 	if isRomanNumber(parts[2]) {
 		right = number.RomanNumber(parts[2])
+		rightIsRoman = true
 	} else {
 		num, err := strconv.Atoi(parts[2])
 		if err != nil {
@@ -42,14 +46,25 @@ func main() {
 		right = number.ArabicNumber(num)
 	}
 
+	// Check if both numbers are from the same numeric system
+	if leftIsRoman != rightIsRoman {
+		panic("Invalid input: mixed numeric systems are not allowed.")
+	}
+
 	calc := calculator.Calculator{left, right, parts[1]}
 	result, err := calc.Calculate()
 	if err != nil {
 		panic(err)
 	}
 
-	if _, ok := result.(number.ArabicNumber); ok {
-		fmt.Println(result.ToString())
+	// If result is negative and numbers are Roman, panic
+	resultInt, _ := result.ToInt()
+	if resultInt < 0 && leftIsRoman {
+		panic("Invalid result: negative numbers are not allowed in the Roman numeral system.")
+	}
+
+	if leftIsRoman {
+		fmt.Println(number.IntToRoman(resultInt))
 	} else {
 		fmt.Println(result.ToString())
 	}

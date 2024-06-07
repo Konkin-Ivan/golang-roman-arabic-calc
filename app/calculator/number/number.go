@@ -2,6 +2,7 @@ package number
 
 import (
 	"strconv"
+	"strings"
 )
 
 type Number interface {
@@ -39,4 +40,19 @@ func (n RomanNumber) ToInt() (int, error) {
 
 func (n RomanNumber) ToString() string {
 	return string(n)
+}
+
+// IntToRoman converts an integer to a Roman numeral string
+func IntToRoman(num int) string {
+	values := []int{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}
+	symbols := []string{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"}
+
+	var result strings.Builder
+	for i, value := range values {
+		for num >= value {
+			num -= value
+			result.WriteString(symbols[i])
+		}
+	}
+	return result.String()
 }

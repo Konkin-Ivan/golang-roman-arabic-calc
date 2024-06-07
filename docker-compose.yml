@@ -7,7 +7,5 @@ services:
       dockerfile: docker/go/app/Dockerfile
     volumes:
       - ./:/app
-      - ./app/go.mod:/go.mod
-      - ./app/go.sum:/go.sum
     entrypoint: [ "tail", "-f", "/dev/null" ]
     container_name: "${PROJECT_NAME}_go"
