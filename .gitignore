@@ -1,0 +1,7 @@
+.idea/
+.env
+app/docs/
+app/go.mod
+docker
+docker-compose.yml
+Makefile
