@@ -6,11 +6,8 @@ Arabic - Roman calculator.
 
 - git clone;
 - cd to app folder;
-- .env.example rename to .env;
-- .env change project_name;
 
 ## Usage
 
-- ```make up``` // start docker container;
-- ```make run``` // compile and run program.
-- ```make test``` // run testing.
+- ```go mod init <module name>``` // default: go mod init Go_test;
+- ```go run main.go``` // compile and run program.

@@ -1,5 +1,6 @@
 .idea/
 .env
+.env.example
 app/docs/
 app/go.mod
 docker
