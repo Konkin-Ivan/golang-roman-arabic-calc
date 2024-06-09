@@ -57,6 +57,11 @@ func getOperandsAndOperator() (string, string, string) {
 		panic("Invalid input: the mathematical expression must contain two operands and one operator (+, -, /, *).")
 	}
 
+	isValid := validateInput(parts[0], parts[2])
+	if isValid == false {
+		panic(fmt.Sprintf("Invalid number: %s", parts))
+	}
+
 	return parts[0], parts[1], parts[2]
 }
 
@@ -81,4 +86,28 @@ func isRomanNumber(num string) bool {
 
 func areSameNumericSystem(leftIsRoman, rightIsRoman bool) bool {
 	return leftIsRoman == rightIsRoman
+}
+
+func validateInput(firstNumber string, lastNumber string) bool {
+	validCombinations := map[string]bool{
+		"I": true, "II": true, "III": true, "IV": true, "V": true, "IX": true,
+		"X": true, "XL": true, "L": true, "XC": true,
+		"C": true, "CD": true, "D": true, "CM": true, "M": true,
+	}
+
+	if _, ok := validCombinations[firstNumber]; ok {
+		if _, ok := validCombinations[lastNumber]; ok {
+			return true
+		}
+
+		num, err := strconv.Atoi(lastNumber)
+		return err == nil && num >= 0 && num <= 9
+	}
+
+	firstNum, err := strconv.Atoi(firstNumber)
+	if err != nil {
+		return false
+	}
+
+	return firstNum >= 0 && firstNum <= 9
 }
