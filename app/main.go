@@ -90,9 +90,16 @@ func areSameNumericSystem(leftIsRoman, rightIsRoman bool) bool {
 
 func validateInput(firstNumber string, lastNumber string) bool {
 	validCombinations := map[string]bool{
-		"I": true, "II": true, "III": true, "IV": true, "V": true, "IX": true,
-		"X": true, "XL": true, "L": true, "XC": true,
-		"C": true, "CD": true, "D": true, "CM": true, "M": true,
+		"I": true, "II": true, "III": true, "IV": true, "V": true, "VI": true, "VII": true, "VIII": true, "IX": true, "X": true,
+		"XI": true, "XII": true, "XIII": true, "XIV": true, "XV": true, "XVI": true, "XVII": true, "XVIII": true, "XIX": true, "XX": true,
+		"XXI": true, "XXII": true, "XXIII": true, "XXIV": true, "XXV": true, "XXVI": true, "XXVII": true, "XXVIII": true, "XXIX": true, "XXX": true,
+		"XXXI": true, "XXXII": true, "XXXIII": true, "XXXIV": true, "XXXV": true, "XXXVI": true, "XXXVII": true, "XXXVIII": true, "XXXIX": true, "XL": true,
+		"XLI": true, "XLII": true, "XLIII": true, "XLIV": true, "XLV": true, "XLVI": true, "XLVII": true, "XLVIII": true, "XLIX": true, "L": true,
+		"LI": true, "LII": true, "LIII": true, "LIV": true, "LV": true, "LVI": true, "LVII": true, "LVIII": true, "LIX": true, "LX": true,
+		"LXI": true, "LXII": true, "LXIII": true, "LXIV": true, "LXV": true, "LXVI": true, "LXVII": true, "LXVIII": true, "LXIX": true, "LXX": true,
+		"LXXI": true, "LXXII": true, "LXXIII": true, "LXXIV": true, "LXXV": true, "LXXVI": true, "LXXVII": true, "LXXVIII": true, "LXXIX": true, "LXXX": true,
+		"LXXXI": true, "LXXXII": true, "LXXXIII": true, "LXXXIV": true, "LXXXV": true, "LXXXVI": true, "LXXXVII": true, "LXXXVIII": true, "LXXXIX": true, "XC": true,
+		"XCI": true, "XCII": true, "XCIII": true, "XCIV": true, "XCV": true, "XCVI": true, "XCVII": true, "XCVIII": true, "XCIX": true, "C": true,
 	}
 
 	if _, ok := validCombinations[firstNumber]; ok {
