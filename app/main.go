@@ -108,7 +108,7 @@ func validateInput(firstNumber string, lastNumber string) bool {
 		}
 
 		num, err := strconv.Atoi(lastNumber)
-		return err == nil && num >= 0 && num <= 9
+		return err == nil && num >= 1 && num <= 10
 	}
 
 	firstNum, err := strconv.Atoi(firstNumber)
@@ -116,5 +116,5 @@ func validateInput(firstNumber string, lastNumber string) bool {
 		return false
 	}
 
-	return firstNum >= 0 && firstNum <= 9
+	return firstNum >= 1 && firstNum <= 10
 }
